@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+<title>Bridege Os 北京盈捷万通网络智能设备技术有限公司</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta content="盈捷万通 Bridgeos bri-os"/>
+
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="css/jCarousel.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="css/colors/blue.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="css/buttons.css">
+
+</head>
+
+<body>
+
+<div class="first2">
+<div id="headerinner">
+	<div class="inner">
+		<div id="logo">
+			<a href="index.html" title="北京盈捷万通网络智能设备技术有限公司"></a>
+		</div>
+		<div id="nav">
+			<ul class="level-1 black">
+				<li><a href="index.html">首页</a><span> Home</span></li>
+				<li><a href="#">参考文档</a><span> Reference</span></li>
+				<li><a href="./introduction.html">入门教程</a><span> Getting Started</span></li>
+				<li><a href="#">技术案例</a><span> Technical </span></li>
+				<li><a href="http://static.bri-os.com/inner">数据挖掘</a><span> Data Mining</span></li>
+                <li><a href="http://hao.bri-os.com/soft/bridgeos2013-8.27-nom.iso" class="button glow button-flat-primary"><i class="icon-rocket"></i>&nbsp;&nbsp;下载新版</a><span> 版本号：2013.8.27-nom</span></li>
+
+			</ul>
+		</div>		    
+	</div>
+</div>
+</div>
+
+<div id="contentin-nat">
+	<div class="inner">
+		<div class="contentin-left">
+			<ul class="contentin-ul">
+			<li class=""><a href="#" >NAT基础</a></li>
+			<li class=""><a href="#base2">配置NAT</a></li>
+			<li class=""><a href="#base3">启用NAT</a></li>
+			<li class=""><a href="#base4">多出口负载均衡</a></li>
+			<li class=""><a href="#base5">多出口的断网备份</a></li>
+			<li class=""><a href="#base6">NAT（网络地址转换）</a></li>
+			<li class=""><a href="#base7">特性NAT之 ‘空NAT’</a></li>
+			<li class=""><a href="#base8">NAT之状态特性</a></li>
+			<li class=""><a href="#base9">NAT之策略特性</a></li>
+			<li class=""><a href="#base10">根据联通、电信路由表做NAT</a></li>
+			<li class=""><a href="#base11">关闭NAT配置自动加载</a></li>
+			</ul>
+		</div>
+
+		<div class="contentin-right"> 		
+		<p><h3 >NAT基础</h3></p>
+		<p><h6 >nat 4要素</h6></p>
+		<p><XMP>要素1	Ip global	BRI(config)#ip global N <nat ip address> <mac address> <bandwith></XMP></p>
+		<p><XMP>要素2	access-list	access-list N permit {ip|udp|tcp|all|icmp|gre} <src ip> <src mask> <dst ip> <dst mask> <dst port></XMP></p>
+		<p><XMP>要素3	Nat map	nat map N <acl number> <ip global number> [d][h][a]{first|balanced}</XMP></p>
+		<p id="base2"><XMP>要素4	Nat group	nat group N <map number></XMP></p>
+
+		<p><h6>盈捷万通BridgeOS系统有多个桥接口，每个都可以启用、停用NAT。</h6></p>
+		<p><h7>Ip global    做NAT时所用的公网IP地址的信息包括:公网IP、网关的MAC、此IP的带宽、此IP所在的VLAN(可选)</h7></p>
+		<p><h7>Access-list	访问控制列表，地址列表信息</h7></p>
+		<p ><h7>Nat map	做NAT时关联access-list与ip global，建立NAT的映射关系</h7></p>
+		<p><h7>Nat group	建立nat map映射组，多个NAT映射关系建立一个组</h7></p>
+
+		<p ><h3>配置NAT</h3></p>
+		<p>NAT的配置使用策略方式。启用NAT之前，首先在全局配置模式下配置NAT策略，然后在桥接口中应用该策略。NAT策略包括4个部分：ip global、access-list、nat map、nat group。</p>
+		<p>访问控制列表(access-list)。</p>
+		<p>访问控制列表用来告诉哪些数据包需要接收、丢弃、NAT转换或者其他操作。访问控制列表有两种，一种为传统的基于四元组匹配（协议、源地址、目的地址、目的端口）的访问控制列表，编号从100-199， 另一种为高级访问控制列表，基于该数据包目的地址（上行）或者源地址（下行）所属的域，编号从200-299。域通过域名来指定，指定域名时，可以使用严格匹配和模糊匹配，严格配置时，在域名前面加上一个点‘.’。例如abc.com指定的域为所有包含abc.com的域，包括但不限于mp3.abc.com, ftp.abc.com, abc.com.cn等。.abc.com指定的域为abc.com。基于五元组的访问控制列表创建命令：
+		<p><h7>BRI(config)#access-list N permit {ip|udp|tcp|all|icmp|gre} ＜src ip＞ ＜src mask＞ ＜dst ip＞ ＜dst mask＞ ＜dst port＞</h7></p>
+		<p>编号N的范围为100-199。IP地址的格式是标准点分十进制格式。＜dst port＞的范围为0-65535。＜src mask＞和＜dst mask＞分别是源IP地址与目的IP地址的子网掩码的二进制反码。例如0.0.0.255代表子网掩码255.255.255.0</p> 
+		<p>对同一个编号多次使用该命令可以创建多条项目。一个编号最多可以创建20项。</p>
+
+
+		<p>基于域的访问控制列表创建命令：</p>
+		<p><h7>BRI(config)#access-list N ＜domain name＞</h7></p>
+		<p>编号N的范围为200-299。对同一个编号多次使用该命令可以创建多条项目。一个编号最多可以创建20项。</p>
+		<p>基于运营商访问控制列表创建命令：(未完成）</p>
+		<p >基于动态图片访问控制列表创建命令：(未完成）</p>
+
+		<p >NAT信息用来告诉对数据包做什么处理。包括三个内容：NAT地址、下一跳、带宽。同样地，同一个编号可以创建多个NAT信息，主要用于断网备份和负载均衡。</p>
+		<p>NAT地址是进行网络地址转换的IP地址。特殊地址“0.0.0.0”代表NAT到自己，相当于没有做NAT（但仍然经过NAT系统）。</p>
+		<p >下一跳是该数据包下一跳的MAC地址。其中特殊地址“00:00:00:00:00:00”代表不改变数据包的目的MAC地址，即保持原来的MAC地址不变，此种情况下，下游设备的下一跳应指为BridgeOS系统的上游设备，而非BridgeOS系统，否则，上游设备会因为目的MAC地址非本地而丢弃该数据包。</p>	
+        <p >带宽的值需要配合映射中的选项使用，意义根据映射中的选项(first或balanced）不同而不同，用于实现负载均衡与断网备份（具体见“映射”与“负载均衡”fix me）。当映射选项是first时，其意义是最大带宽（单位Mbps），代表该NAT地址的最大容量。当流量大于该阈值时，自动切换到相同编号的下一个NAT地址。当选项是balanced时，其意义是带宽比例，系统根据该值在组内按比例分配带宽（该功能有可能导致某些带防盗链的网站访问异常）。当编号下面只有一个NAT信息项时，映射的选项和带宽的值都被忽略。关于该值的具体使用，见“映射”与“负载均衡”fix me。</p>
+
+		<p>命令：</p>
+        <p><h7>BRI(config)#ip global N ＜nat ip address＞ ＜mac address＞ ＜bandwith＞</h7></p>
+		<p>N的范围从0-19， 同一个编号N最多可以包含20个NAT信息项。<bandwith>范围从0-9999。</p>
+
+		<p>映射．映射将访问控制列表与NAT信息做关联，描述了对符合该访问控制列表的数据包要做的行为。</p>
+		<p><h7>BRI(config)#nat map N ＜acl number＞ ＜ip global number＞ [d][h][a]{first|balanced}</h7></p>
+		<p >N的范围从0-19。＜acl number＞ ＜ip global number＞ 分别是进行关联的访问控制列表编号与ip global编号。一个编号只能有一个映射。d, h, a用于关闭某些功能，分别参阅DNS劫持、视频与大文件流量引导、广告章节。</p>
+		<p id="base3">当ip global编号下面有多个NAT信息项时，关键字first与balanced用于使用何种方法从中选取一个，当编号下面只有一个NAT信息项时，该选项和NAT信息中的带宽字段无意义，被系统忽略。</p>
+		<p>关键字first，为优先均衡法（此时NAT信息中的带宽意义为最大允许带宽），优先从第一个选取，第一个达到最大允许带宽时，选取下一个。当所有的NAT项都达到其最大允许带宽时，系统使用balanced方法。</p>
+
+		<p>关键字balanced，为比例均衡法（此时NAT信息中的带宽意义为带宽比例），从多个NAT项中，按比例随机选择，比例大 ，选择的概率大。（具体见“负载均衡”fix me）。</p>
+		<p>分组。分组是将映射分成组，一个组完整表达了一个NAT任务的所有内容。在接口按组来应用，而不是单个映射。</p>
+		<p>命令：<h7>BRI(config)#nat group N ＜map number＞</h7></p>
+		<p>N的范围为0-19。一个编号最多有20个映射。</p>
+
+		<p id="base4"><h3>启用NAT</h3></p>
+		
+		<p>桥接口启用NAT之前，需要指出NAT的策略，NAT的策略通过应用某个分组来完成。命令：
+		<p><h7>BRI(config-bri-if)#nat policy ＜group number＞</h7></p>
+		<p>在桥接口中应用该命令，指明接口中的NAT策略是哪个分组。</p>
+		<p>最后，需要启用NAT。命令：</p>
+		<p><h7>BRI(config-bri-if)#nat enable</h7></p>
+		<p>至此，NAT已经启用。需要查看NAT的运行状态，包括所对应的访问控制列表、NAT信息、流量、是否断网等，使用BRI#show interface bridge 0/N nat。N指定查看哪个接口。</p>
+
+		<p><h3>多出口负载均衡</h3></p>
+		<p>NAT的负载均衡是将流量NAT到不同的地址和出口的技术。负载均衡的方法有两种，一种为优先策略，一种是随机比例。对应映射中的关键字分别为first和balanced。随机比例即在多个地址中随机选择NAT地址与出口。比例大的被选中的概率大，反之被选中的概率小。例如：</p>
+		<p><h7>BRI(config)#ip global 0 <ip1> <mac1> 300  （出口A）</p>
+		<p><h7>BRI(config)#ip global 0 <ip2> <mac2> 200  （出口B）</p>
+		<p><h7>BRI(config)#ip global 0 <ip3> <mac3> 100  （出口C）</p>
+		<p>则出口A、B、C按比例分配带宽。若总带宽为100M，则出口A、B、C分别分配的带宽为50M、33M、16M。随机比例分配带宽可能导致某些带防盗链的网站访问异常。</p>
+		<p>优先策略即优先选择靠前的NAT地址，当靠前的地址已经达到最大带宽容量时，选择下一个比较靠前的地址。例如：</p>
+		<p><h7>BRI(config)#ip global 0 <ip1> <mac1> 300  （出口A）</p>
+		<p id="base5"><h7>BRI(config)#ip global 0 <ip2> <mac2> 200  （出口B）</p>
+		<p><h7>BRI(config)#ip global 0 <ip3> <mac3> 100  （出口C）</p>
+		<p>当桥接口带宽小于300M时，则始终选择出口A。</p>
+		<p>当桥接口带宽为500M时，出口A带宽300M，出口B带宽200M。</P>
+		<p>当桥接口带宽为800M时，出口A带宽300M，出口B带宽200M，出口C带宽100M。</P>
+		<p>当桥接口带宽大于800M时，超出部分按随机比例策略。</p>
+
+	
+
+		<p ><h3>多出口的断网备份</h3></p>
+		<p>断网备份是指当系统检测到一个出口断网时，自动将该出口从列表中剔除，选择其他可用出口，该出口恢复时，又将出口恢复到列表中。只有存在多个出口时，断网备份才有效，当ip global下只有一个NAT信息项时，始终使用该出口，不切换。</p>
+		<p id="base6">对于存在多个NAT信息项的ip global，系统定时检测每个NAT信息项出口的状态，发现某个出口断网时，则将该出口的允许带宽或者比例带宽置为0，该出口不在NAT的范围之内。剩下的可用出口中，仍然按照映射的选项（first或者balanced）不同，进行优先策略负载均衡或者随机比例负载均衡。典型的断网备份的配置如下：</p>	
+		<p><h7>BRI(config)#access-list 100 permit all 0.0.0.0 255.255.255.255 0.0.0.0 255.255.255.255 0</h7></p>
+		<p ><h7>BRI(config)#ip global 0  ＜ip1＞ ＜mac1＞ 1000  （出口A）</h7></p>
+		<p><h7>BRI(config)#ip global 0  ＜ip2＞ ＜mac2＞ 1000  （出口B）</h7></p>
+		<p><h7>BRI(config)#nat map 0 100 0</h7></p>
+		<p id="base7">该配置说明，对所有的流量，都NAT到出口A。只有出口A断网时，切换到出口B。</p>
+		
+		<p><h3>NAT（网络地址转换）</h3></p>
+		<p>视频与大文件流量引导、DNS劫持、广告功能，都依赖于NAT模块，只有启用NAT时，才可以启用该功能。如果不需要做NAT而要使用流量引导，可以使用NAT到自己的方式，即使用特殊NAT地址“0.0.0.0”。例如以下配置即为将所有的数据都NAT到自己：</p>
+		<p ><h7>BRI(config)#access-list 100 permit all 0.0.0.0 255.255.255.255 0.0.0.0 255.255.255.255 0</h7></p>
+		<p><h7>BRI(config)#ip global 0 0.0.0.0 <mac> 1000 </h7></p>
+		<p><h7>BRI(config)#nat map 0 100 0 first</h7></p>
+
+		<p id="base8"><h3>特性NAT之 ‘空NAT’</h3></p>
+		<p>这只是一个空NAT的例子，空NAT就是把自己NAT到自己，也就是跟没有做NAT是一样的，所以实际上是没有做NAT，不同的是空NAT在内核里建立了session表，这个表可以给其它功能特性提供连接跟踪基础。</p>
+		<p><h7>BRI(config)#access-list 100 permit all 0.0.0.0 255.255.255.255 0.0.0.0 255.255.255.255 0</h7></p>
+		<p><h7>BRI(config)#ip global 0 0.0.0.0 00:00:00:00:00:00 1000 </h7></p>
+		<p><h7>BRI(config)#nat map 0 100 0 first</h7></p>
+		<p><h7>BRI(config)#nat group 0 0</h7></p>
+
+		<p><h3>NAT之状态特性</h3></p>
+		<p id="base9">在起nat时出现以下情况将体现出NAT路由穿透特性：</p>
+		<p id="base10">比如你的客户的地址是123.123.0.0/16一个B的地址，这段地址在公网上是能访问的，
+但是你的客户在经过你的桥做了一个nat，把这段地址nat到了8.8.8.8，那么正常情况下公网是不能再访问123.123.0.0/16这段地址的，盈捷的网桥处理方式如下：
+NAT的公网地址为8.8.8.8，而公网发过来的包目的IP是123.123.0.0/16，这时认为是反穿透，对这个包做一个穿透session记录，然后客户的主机应答时就不会nat到8.8.8.8了。</p>
+		<p><h7>注：这个返穿透在三层的桥模式里一定要写 next-hop mac……,(请参考层二转发与层三转发)</h7></p>
+		
+		<p><h3>NAT之策略特性</h3></p>
+		<p>结合空NAT,本特性就是完全的策略路由器了</p>
+		<p>`</p>
+		<p><h7>根据联通、电信路由表做NAT</h7></p>
+		<p>系统包括了主流路由表：</p>
+		<li>联通路由表： access-list 304</li>
+		<li>电信路由表： access-list 305</li>
+		<li>铁通路由表： access-list 308</li>
+		<li>移动路由表： access-list 309</li>
+		<li>教育网路由表： access-list 306</li>
+		<li>国外路由表： access-list 307</li>
+		　　<li><h7>BRI＜config＞#access-list</h7></li>
+
+　　   <li><100, 199>        for legacy ACL</li><li><200, 299>        for advanced domain name ACL</li><li><300, 300>        Special ACL for protection traffic</li> <li><301, 301>        special ACL for game traffic</li><li><302, 302>        special ACL for web traffic</li><li><303, 303>        special ACL for download traffic</li><li><304, 304>        route table of China Unicom</li><li><305, 305>        route table of China Telecom</li> <li><306, 306>        route table of Enet (educational network)</li><li><307, 307>        route table of Oversea Web Site</li> <li><308, 308>        route table of China Railcom</li><li><309, 309>        route table of China Mobile</li>
+
+       <p id="base11"><h3>关闭NAT配置自动加载</h3></p>
+		<p>在设备日常维护过程中可能会对ACL、ip global、nat map、nat group做一些调整，在调整的过程中配置是实时生效的。有时候这种机制会带来麻烦，比如在设备所带的流量比较大的时候而且要改的配置相对比较多，在改动的过程中需要一定的时间，那么在改动过程中的这段时间里会对流量业务有影响。因此BridgeOS提供了关闭NAT配置自动加载的方法。</p>
+
+		<p><h7>BRI＜config＞#policy auto-apply off</h7></p>		
+		<p>#关闭NAT配置自动加载（这个命令在设备重起后自动失效）</p>
+		<p><h7>BRI＜config＞#policy auto-apply off</h7></p>		
+		<p>#打开NAT配置自动加载</p>
+		<p><h7>BRI#reload policy</h7></p>		
+		<p>#重新加载NAT策略</p>
+		<p><h7>BRI＜config-b0/0＞# nat policy ＜NN＞</h7></p>		
+		<p>#在桥中应用NAT策略（在关闭配置NAT自动加载的情况下也能实时生效）</p>
+
+
+		</div>
+	</div>
+</div>
+
+<div class="news-home">
+	<div class="inner">
+		<h2>End</h2>
+		<ul>
+			<li>帮助文档到这里就结束了，有疑问请咨询我们的工程师。 </li>
+		</ul>
+	</div>
+	<div class="clear">
+	</div>
+</div>
+<p id="copyright">
+	&copy; 2013 - www.bri-os.com - 京ICP备13035608号
+</p>
+</body>
+</html>

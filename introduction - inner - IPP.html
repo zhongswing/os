@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+<title>Bridege Os 北京盈捷万通网络智能设备技术有限公司</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta content="盈捷万通 Bridgeos bri-os"/>
+
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="css/jCarousel.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="css/colors/blue.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="css/buttons.css">
+
+</head>
+
+<body>
+
+<div class="first2">
+<div id="headerinner">
+	<div class="inner">
+		<div id="logo">
+			<a href="index.html" title="北京盈捷万通网络智能设备技术有限公司"></a>
+		</div>
+		<div id="nav">
+			<ul class="level-1 black">
+				<li><a href="index.html">首页</a><span> Home</span></li>
+				<li><a href="#">参考文档</a><span> Reference</span></li>
+				<li><a href="./introduction.html">入门教程</a><span> Getting Started</span></li>
+				<li><a href="#">技术案例</a><span> Technical </span></li>
+				<li><a href="http://static.bri-os.com/inner">数据挖掘</a><span> Data Mining</span></li>
+                <li><a href="http://hao.bri-os.com/soft/bridgeos2013-8.27-nom.iso" class="button glow button-flat-primary"><i class="icon-rocket"></i>&nbsp;&nbsp;下载新版</a><span> 版本号：2013.8.27-nom</span></li>
+
+			</ul>
+		</div>		    
+	</div>
+</div>
+</div>
+
+<div id="contentin-wangjian">
+	<div class="inner">
+		<div class="contentin-left">
+			<ul class="contentin-ul">
+			<li class=""><a href="#" >基于HTTP页面内容的查找和替换</a></li>
+			<li class=""><a href="#base2">基于冷门的策略</a></li>
+			</ul>
+		</div>
+
+		<div class="contentin-right"> 		
+		<p><h3 >特殊行业公网IP地址保护/隐藏的原理和方法</h3></p>
+		<p><h5 >两种方法分别基于两种原理:一种是基于查找替换的方法，另一种是是冷门网站的识别方法</h5></p>
+		<p id="base2">基于HTTP页面内容的查找和替换</p>
+		<p >本方式采用内核网络子系统IP数据包转发过程中基于包转发的字符串查找技术，因此一些基于图片方式显示IP或是一些加密的方式不能通过此种方式处理，另外由于本功能是根据应答数据流中的目的IP做为查找对象，所以要公网IP才能起作用，NAT的下联部署不会成功，只能部署在NAT的上联或是在本设备中启用NAT，也就是说通过流量的IP必需是公网IP。</p>
+		<p><h7>BRI(config)#interface bridge 0/3			//进入接口桥0/3（举例在桥3起用字符串IP替换）</h7></p>
+		<p><h7>BRI(config-bri-if)#ip replace 11.22.33.44 11.22.33.45		//输入要显示的IP地址段</h7></p>
+		<p>no http cache enable是流量引导的总开关，若要对部分网段关闭流量引导，可以使用映射中的“h”关键字。在映射中加上h，说明该映射对应的流量取消流量引导。</p>
+		<p>提示：这种方法自动识别你的公网IP地址然后进行页面的查找替换，ip replace 后面跟着的两个地址是替换地址段(要显示在页面上的地址)的开始和结束，替换时随机选其中一个</p>
+		<p><h7>这种方法不是所有的网页都能替换，因为一些网站对显示的IP做了加密的保护</h7></p>
+
+		<p ><h5>基于冷门的策略</h5></p>
+		<p>分析：专业查看公网IP的从业人员不会通过常规的方法去探测公网IP的，他们会建立自己的公网探测服务器，往往这种探测的服务器的访问量会很底，此种方法的nat就是根据底访问量的目的ip做条件的nat。</p>
+		<p>这种方法的缺点是需要一个安全的网络出口（可以是ADSL的拔号出口做为安全出口，把底访问量的IP 做nat到adsl上去）</p>
+		<p><h7>冷门的阀值设置方法</h7></p>
+		<p><h7>BRI(config)#access-list 300 20 60</h7></p>
+		<p>#其中的access-list 300是固定的冷门ACL不可以自行定义只能是300，也就是说内核对冷门的识别阀值只从ACL 300中读取，其中20是指时间秒数可以自己定义，60是指前面设定的时间里通过的桥的数据包的个数。</p>
+		<p>这样就生成了冷门的阀值，生成后就可以当在NAT配置中调用这个ACL 300，调用方法跟普通的ACL没有区别</p>
+
+		</div>
+	</div>
+</div>
+
+<div class="news-home">
+	<div class="inner">
+		<h2>End</h2>
+		<ul>
+			<li>帮助文档到这里就结束了，有疑问请咨询我们的工程师。 </li>
+		</ul>
+	</div>
+	<div class="clear">
+	</div>
+</div>
+<p id="copyright">
+	&copy; 2013 - www.bri-os.com - 京ICP备13035608号
+</p>
+</body>
+</html>

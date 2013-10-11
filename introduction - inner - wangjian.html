@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+<title>Bridege Os 北京盈捷万通网络智能设备技术有限公司</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta content="盈捷万通 Bridgeos bri-os"/>
+
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="css/jCarousel.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="css/colors/blue.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="css/buttons.css">
+
+</head>
+
+<body>
+
+<div class="first2">
+<div id="headerinner">
+	<div class="inner">
+		<div id="logo">
+			<a href="index.html" title="北京盈捷万通网络智能设备技术有限公司"></a>
+		</div>
+		<div id="nav">
+			<ul class="level-1 black">
+				<li><a href="index.html">首页</a><span> Home</span></li>
+				<li><a href="#">参考文档</a><span> Reference</span></li>
+				<li><a href="./introduction.html">入门教程</a><span> Getting Started</span></li>
+				<li><a href="#">技术案例</a><span> Technical </span></li>
+				<li><a href="http://static.bri-os.com/inner">数据挖掘</a><span> Data Mining</span></li>
+                <li><a href="http://hao.bri-os.com/soft/bridgeos2013-8.27-nom.iso" class="button glow button-flat-primary"><i class="icon-rocket"></i>&nbsp;&nbsp;下载新版</a><span> 版本号：2013.8.27-nom</span></li>
+
+			</ul>
+		</div>		    
+	</div>
+</div>
+</div>
+
+<div id="contentin-wangjian">
+	<div class="inner">
+		<div class="contentin-left">
+			<ul class="contentin-ul">
+			<li class=""><a href="#" >网监配置及说明</a></li>
+			<li class=""><a href="#base2">网监数据检索</a></li>
+			</ul>
+		</div>
+
+		<div class="contentin-right"> 		
+		<p><h3 >网监日志</h3></p>
+		<p><h6 >网监配置及说明</h6></p>
+		<p>网监数据包括http协议数据及Tencent QQ数据。可选的数据存放位置有local（系统内部）、extern（外部USB硬盘）、none（不存储）。使用的命令分别为：</p>
+		<p ><h7>BRI(config-pppoe-if)#surveillance storage local</h7></p>
+		<p><h7>BRI(config-pppoe-if)#surveillance storage extern</h7></p>
+		<p><h7>BRI(config-pppoe-if)#surveillance storage none</h7></p>
+		<p>默认存储位置为local。</p>
+
+		<p id="base2">若要将存储位置改为extern，请准备一个USB硬盘，分区并格式化（支持的文件系统：FAT32, NTFS, ext3）。当有多个分区存在时，系统默认使用第一个分区。通过设备机身的USB接口，将USB硬盘与设备相连，然后使用surveillance storage extern命令，将存储位置改为外部USB硬盘。为了保证数据的完整性，在操作过程中，以下两个步骤不能颠倒，否则，可能会有数据丢失：</p>
+		<p><h7>1 将USB硬盘与设备相连。</h7></p>
+		<p><h7>2 使用surveillance storage extern命令，将存储位置改为外部USB硬盘</h7></p>
+		<p>若要将存储位置从extern改为local，请严格遵循以下两个步骤，否则可能会有数据丢失，破坏数据的完整性：</p>
+		<p><h7 >1 使用surveillance storage local命令，将存储位置改为系统内部</h7></p>
+		<p><h7>2 将USB硬盘从机身USB接口拨出。</h7></p>
+
+		<p><h3 >网监数据检索</h3></p>
+		<p>BridgeOS系统启动了一个PPPoE服务器网页终端的服务，它在所有可用物理接口IP地址上，监听8080端口。用户检索数据，只需在浏览器地址栏输入BridgeOS系统的某个管理地址和端口8080（http://xxx.xxx.xxx.xxx:8080），通过身份验证后，便进入到了检索页面。管理员可以根据时间范围和数据类型（http协议数据或Tencent QQ数据）进行检索。PPPoE服务器网页终端服务会同时从系统内部和外置USB硬盘同时检索（如果USB硬盘已经连接），检索结果中，存储类型为“local”说明该条记录来自于系统内部，若为"usb"说明该条记录来自于外置USB硬盘。</p>
+		
+		</div>
+	</div>
+</div>
+
+<div class="news-home">
+	<div class="inner">
+		<h2>End</h2>
+		<ul>
+			<li>帮助文档到这里就结束了，有疑问请咨询我们的工程师。 </li>
+		</ul>
+	</div>
+	<div class="clear">
+	</div>
+</div>
+<p id="copyright">
+	&copy; 2013 - www.bri-os.com - 京ICP备13035608号
+</p>
+</body>
+</html>

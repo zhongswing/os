@@ -1,0 +1,180 @@
+#signup_form {
+	clear: both;
+	width: 720px;
+	padding: 32px 0 0 0;
+	background: #fff;
+	margin: 0 auto;
+}
+
+#signup_form form {
+	margin: 0 32px
+}
+
+#signup_form legend {
+	display: none
+}
+
+#signup_form fieldset {
+	display: block;
+	padding-bottom: 24px;
+	background: url(../images/site/dots_row.gif?1343668608) left bottom repeat-x #eee;
+}
+
+#signup_form fieldset h2 {
+	float: left;
+	margin: 26px 0 28px 131px;
+	text-indent: -9999em
+}
+
+#signup_form #signup_store {
+	width: 279px;
+	height: 28px;
+	background: url(../images/site/signup_hdr_store.png) no-repeat
+}
+
+#signup_form #signup_paypal {
+	width: 363px;
+	height: 28px;
+	background: url(../images/site/signup_hdr_paypal.png) no-repeat
+}
+
+#signup_form #signup_you {
+	width: 214px;
+	height: 28px;
+	background: url(../images/site/signup_hdr_you.png) no-repeat
+}
+
+#signup_form fieldset dl {
+	float: left;
+	width: 100%
+}
+
+#signup_form fieldset dt {
+	clear: both;
+	float: left;
+	width: 160px;
+	margin-right: 16px;
+	padding: 8px 0 2px 0;
+	text-align: right;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 20px;
+	color: #403f3d
+}
+
+#signup_form fieldset dd {
+	float: left;
+	width: 432px;
+	padding-bottom: 16px;
+	font-size: 11px;
+	color: #918862
+}
+
+#signup_form fieldset input {
+	float: left;
+	margin: 0;
+	width: 374px;
+	height: 24px
+}
+
+#signup_form fieldset input#account_subdomain {
+	width: 256px
+}
+
+#signup_form fieldset select {
+	width: 256px;
+	margin: 9px 0 0 0
+}
+
+dd#subdomain span,#newsletter label,#user_agreement label {
+	float: left;
+	display: block;
+	padding: 12px 0 0 4px;
+	font-size: 12px;
+	color: #333
+}
+
+fieldset#fieldset_you {
+	background-image: none
+}
+
+fieldset#fieldset_plan {
+	padding-top: 16px;
+	padding-bottom: 6px;
+	background: #222
+}
+
+fieldset#fieldset_plan dt {
+	padding-top: 2px;
+	color: #999
+}
+
+fieldset#fieldset_plan dd p {
+	width: 368px;
+	font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	color: #999
+}
+
+fieldset#fieldset_plan span.plan_name {
+	color: #fff
+}
+
+#signup_form fieldset ul {
+	padding-top: 3px
+}
+
+#signup_form fieldset li {
+	line-height: 18px
+}
+
+#signup_form fieldset li label {
+	padding-left: 4px;
+	font-weight: bold
+}
+
+#signup_form dd p,#signup_form #form_footer p {
+	clear: both;
+	float: left;
+	margin: 5px 0 0 0;
+	font-family: Georgia,"Times New Roman",Times,serif;
+	font-size: 11px;
+	line-height: 15px;
+	color: #999
+}
+
+#signup_form dd#newsletter,#signup_form dd#user_agreement {
+	padding-top: 6px
+}
+
+#signup_form fieldset input#account_is_list_subscriber,#signup_form fieldset input#account_agreement {
+	width: auto;
+	height: auto;
+	margin-top: 4px;
+	padding: 0
+}
+
+#newsletter label,#user_agreement label {
+	padding: 6px 0 0 8px
+}
+
+#signup_form #form_footer {
+	margin: 32px 0 48px 0
+}
+
+#signup_form button#btn_sign_up {
+	margin: 0 0 0 176px
+}
+
+#signup_form #form_footer p {
+	clear: none;
+	float: none;
+	width: 368px;
+	margin: 12px 0 0 176px;
+	padding: 0
+}
+
+.signup{
+	width: center;
+}

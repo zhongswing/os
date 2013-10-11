@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+<title>Bridege Os 北京盈捷万通网络智能设备技术有限公司</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta content="盈捷万通 Bridgeos bri-os"/>
+
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="css/jCarousel.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="css/colors/blue.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="css/buttons.css">
+
+</head>
+
+<body>
+
+<div class="first2">
+<div id="headerinner">
+	<div class="inner">
+		<div id="logo">
+			<a href="index.html" title="北京盈捷万通网络智能设备技术有限公司"></a>
+		</div>
+		<div id="nav">
+			<ul class="level-1 black">
+				<li><a href="index.html">首页</a><span> Home</span></li>
+				<li><a href="#">参考文档</a><span> Reference</span></li>
+				<li><a href="./introduction.html">入门教程</a><span> Getting Started</span></li>
+				<li><a href="#">技术案例</a><span> Technical </span></li>
+				<li><a href="http://static.bri-os.com/inner">数据挖掘</a><span> Data Mining</span></li>
+                <li><a href="http://hao.bri-os.com/soft/bridgeos2013-8.27-nom.iso" class="button glow button-flat-primary"><i class="icon-rocket"></i>&nbsp;&nbsp;下载新版</a><span> 版本号：2013.8.27-nom</span></li>
+
+			</ul>
+		</div>		    
+	</div>
+</div>
+</div>
+
+<div id="contentin-wangjian">
+	<div class="inner">
+		<div class="contentin-left">
+			<ul class="contentin-ul">
+			<li class=""><a href="#" >缓存组网----视频与大文件流量引导</a></li>
+			<li class=""><a href="#base2">内核态的HTTP包缓存技术、无IO设计、网页加速</a></li>
+			</ul>
+		</div>
+
+		<div class="contentin-right"> 		
+		<p><h3 >缓存相关</h3></p>
+		<p><h5 >缓存组网----视频与大文件流量引导</h5></p>
+		<p id="base2">视频与大文件流量引导是将在线视频网站的视频点播流量和大文件的流量引导到缓存系统，从而降低出口带宽。本公司的xcache缓存系统通过镜像数据采集文件，支持视频点播播放(请参阅本公司xcache系统）。</p>
+		<p >以下命令分别为配置缓存地址及启用流量引导。</p>
+		<p><h7>BRI(config-bri-if)#http cache ip ＜xcache ip address＞</h7></p>
+		<p><h7>BRI(config-bri-if)#http cache enabl</h7></p>
+		<p>no http cache enable是流量引导的总开关，若要对部分网段关闭流量引导，可以使用映射中的“h”关键字。在映射中加上h，说明该映射对应的流量取消流量引导。</p>
+		<p><h7>本功能需要启用NAT。</h7></p>
+
+		<p ><h5>内核态的HTTP包缓存技术、无IO设计、网页加速</h5></p>
+		<p><h6>内核态的包缓存技术只针对小网页的加速，无IO设计、针对网页的内容做数据包级别的包缓存。</h6></p>
+		<p><h7>BRI（config-bri-if）#http web xcache            //开启web加速、缓存</h7></p>
+		<p><h7>BRI（config-bri-if）#http web xcache nocache 5   //5是包的大小、本命令是可选命</h7></p>
+		<p>有些网页的头部带有no-cache标记，用于说明网页不可以缓存，http web xcache nocache xxx是用于忽略这个标记。比如小于5k以内的网页忽略no-cache标记（即小于5k 的网页只要带no-cache标记就不缓存）。如果没有http web xcache nocache xxx 命令，默认是不缓存带no-cache标记。</p>
+
+		<p><h6>本项功能需要大的内存，内存大小要求在16G至128G。</h6></p>
+
+		</div>
+	</div>
+</div>
+
+<div class="news-home">
+	<div class="inner">
+		<h2>End</h2>
+		<ul>
+			<li>帮助文档到这里就结束了，有疑问请咨询我们的工程师。 </li>
+		</ul>
+	</div>
+	<div class="clear">
+	</div>
+</div>
+<p id="copyright">
+	&copy; 2013 - www.bri-os.com - 京ICP备13035608号
+</p>
+</body>
+</html>
